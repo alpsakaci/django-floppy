@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>floppy{% block title %}{% endblock %}</title>
+    <link href="{% static "img/floppy.ico" %}" rel='icon' type='image/x-icon' />
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/mdb.min.css" %}">
+</head>
+
+<body>
+    <ul class="nav justify-content-center bg-success lighten-4 py-4 sticky-top text-white">
+        <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'newnote' %}">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-plus" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                    <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+                    <path fill-rule="evenodd"
+                        d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                </svg>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'floppyindex' %}">
+                <h2>floppy</h2>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'admin:logout' %}?next={% url 'floppyindex' %}">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-power" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z" />
+                    <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z" />
+                </svg>
+            </a>
+        </li>
+    </ul>
+    {% block body %}
+    {% endblock body %}
+
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+</body>
+
+</html>

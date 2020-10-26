@@ -1,0 +1,22 @@
+{% extends 'floppy/base.html' %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <a href="{% url 'deletenote' note.id %}" onclick="return confirm('Are you sure?');"
+        class="btn btn-danger">delete</a>
+    <p>
+        Date Modified: {{ note.date_modified }} </br>
+        Date Created: {{ note.date_created }} </br>
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <div>
+            <button type="submit" class="btn btn-success w-100">save</button>
+        </div>
+    </form>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,33 @@
+{% extends 'floppy/base.html' %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <form action="{% url 'searchnote' %}" method="post">
+        {% csrf_token %}
+        {{ search_form }}
+    </form>
+    {% if search_result != null %}
+        Search Result: {{ search_result }} note found.
+    {% endif %}
+    <div class="row mx-auto">
+        {% for note in notes %}
+        <div class="col-md-3 mx-auto m-3" onclick="window.location.href = '{% url 'editnote' note.id %}';">
+            <div class="card m-2" style="background-color: whitesmoke; height: 300px;">
+                <div class="card-header">
+                    <p class="font-weight-light small">
+                        M: {{ note.date_modified }} </br>
+                        C: {{ note.date_created }}
+                    </p>
+                </div>
+                <div class="card-body">
+                    {{ note.title | truncatechars_html:20 }}
+                    <p class="card-text font-weight-light">{{ note.content | truncatechars_html:150 | safe }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock body %}

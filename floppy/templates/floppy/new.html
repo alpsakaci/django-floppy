@@ -1,0 +1,15 @@
+{% extends 'floppy/base.html' %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <div>
+            <button type="submit" class="btn btn-success w-100">save</button>
+        </div>
+    </form>
+</div>
+
+{% endblock body %}
