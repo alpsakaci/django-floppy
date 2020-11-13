@@ -3,8 +3,17 @@
 {% block body %}
 
 <div class="container mt-4">
-    <a href="{% url 'deletenote' note.id %}" onclick="return confirm('Are you sure?');"
+    {% if note.deleted == False %}
+    <a href="{% url 'movetotrash' note.id %}" onclick="return confirm('Note will be moved to trash. Are you sure?');"
+        class="btn btn-danger">move to trash</a>
+    {% endif %}
+    {% if note.deleted == True %}
+        <a href="{% url 'deletenote' note.id %}" onclick="return confirm('Note will be deleted. Are you sure?');"
         class="btn btn-danger">delete</a>
+        <a href="{% url 'restorenote' note.id %}" onclick="return confirm('Note will be restored. Are you sure?');"
+            class="btn btn-primary">restore</a>
+    {% endif %}
+        <a href="{% url 'browseversions' note.id %}" class="btn btn-primary">browse versions</a>
     <p>
         Date Modified: {{ note.date_modified }} </br>
         Date Created: {{ note.date_created }} </br>
