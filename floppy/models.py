@@ -41,7 +41,7 @@ class Note(models.Model):
         self.save()
 
     def revert(self, memento_id):
-        care_taker = NoteCareTaker.objects.get(note=self)
+        care_taker = Note.get_care_taker(note=self)
         memento = get_object_or_404(
             NoteMemento.objects.filter(id=memento_id, care_taker=care_taker)
         )
@@ -71,9 +71,20 @@ class Note(models.Model):
         )
 
     @staticmethod
+    def get_care_taker(note):
+        care_taker = None
+        try:
+            care_taker = NoteCareTaker.objects.get(note=note)
+        except:
+            care_taker = NoteCareTaker(note=note)
+            care_taker.save()
+
+        return care_taker
+
+    @staticmethod
     def get_older_versions(user, note_id):
         note = get_object_or_404(Note.objects.filter(id=note_id, owner=user))
-        care_taker = NoteCareTaker.objects.get(note=note)
+        care_taker = Note.get_care_taker(note)
         memento_list = (
             NoteMemento.objects.filter(care_taker=care_taker)
             .order_by("date_created")
