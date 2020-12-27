@@ -15,6 +15,7 @@ urlpatterns = [
     path("restore/<int:note_id>/", views.restore, name="restorenote"),
     path("browseversions/<int:note_id>/", views.browseversions, name="browseversions"),
     path("revertnote/<int:note_id>/<int:memento_id>/", views.revert, name="revertnote"),
+    path("deletememento/<int:note_id>/<int:memento_id>/", views.deletememento, name="deletememento"),
     path("searchnote/", views.search, name="searchnote"),
     path("trash/", views.trash, name="trash"),
     path("api/", include(router.urls)),

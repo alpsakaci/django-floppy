@@ -132,6 +132,14 @@ def revert(request, note_id, memento_id):
 
 
 @login_required(login_url="/admin/login")
+def deletememento(request, note_id, memento_id):
+    note = get_object_or_404(Note.objects.filter(id=note_id, owner=request.user))
+    note.deletememento(memento_id)
+
+    return redirect(index)
+
+
+@login_required(login_url="/admin/login")
 def search(request):
     form = SearchForm(request.POST)
     search_result = []

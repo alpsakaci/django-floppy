@@ -54,6 +54,13 @@ class Note(models.Model):
         self.save()
         memento.delete()
 
+    def deletememento(self, memento_id):
+        care_taker = Note.get_care_taker(note=self)
+        memento = get_object_or_404(
+            NoteMemento.objects.filter(id=memento_id, care_taker=care_taker)
+        )
+        memento.delete()
+
     @staticmethod
     def get_user_notes(user):
         return (

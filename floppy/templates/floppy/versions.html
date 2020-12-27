@@ -20,6 +20,8 @@
                         {{ version.date_created }}
                         <a href="{% url 'revertnote' note.id version.id %}" onclick="return confirm('Note will be reverted to this version. Are you sure?');"
                             class="btn btn-primary">Revert to this version.</a>
+                        <a href="{% url 'deletememento' note.id version.id %}" onclick="return confirm('This version of note will be deleted. Are you sure?');"
+                        class="btn btn-danger">Delete this version.</a>
                     </p>
                 </div>
                 <div class="card-body">
