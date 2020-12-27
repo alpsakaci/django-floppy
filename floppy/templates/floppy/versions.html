@@ -14,19 +14,19 @@
     <div class="row mx-auto">
         {% for version in older_versions %}
         <div class="col-md-3 mx-auto m-3">
-            <div class="card m-2" style="background-color: whitesmoke; height: 300px;">
+            <div class="card m-2" style="background-color: whitesmoke;">
                 <div class="card-header">
                     <p class="font-weight-light small">
                         {{ version.date_created }}
                         <a href="{% url 'revertnote' note.id version.id %}" onclick="return confirm('Note will be reverted to this version. Are you sure?');"
-                            class="btn btn-primary">Revert to this version.</a>
+                            class="btn btn-primary w-100 mx-0">Revert to this version.</a>
                         <a href="{% url 'deletememento' note.id version.id %}" onclick="return confirm('This version of note will be deleted. Are you sure?');"
-                        class="btn btn-danger">Delete this version.</a>
+                        class="btn btn-danger w-100 mx-0">Delete this version.</a>
                     </p>
                 </div>
                 <div class="card-body">
                     {{ version.title | truncatechars_html:20 }}
-                    <p class="card-text font-weight-light">{{ version.content | truncatechars_html:150 | safe }}</p>
+                    <p class="card-text font-weight-light">{{ version.content | truncatechars_html:50 | safe }}</p>
                 </div>
             </div>
         </div>
