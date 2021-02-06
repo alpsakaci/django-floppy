@@ -15,7 +15,7 @@
     {% endif %}
     <div class="row mx-auto">
         {% for note in notes %}
-        <div class="col-md-3 mx-auto m-3" onclick="window.location.href = '{% url 'editnote' note.id %}';">
+        <div class="col-lg-4 col-md-6" onclick="window.location.href = '{% url 'editnote' note.id %}';">
             <div class="card m-2" style="background-color: whitesmoke;">
                 <div class="card-header">
                     <p class="font-weight-light small">
